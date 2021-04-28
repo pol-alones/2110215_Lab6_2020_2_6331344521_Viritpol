@@ -27,6 +27,9 @@ public class ProgressTableCell<S> extends TableCell<S, Double> {
 		/*====================FILL CODE============================
 		Initialize all remaining fields.
 		Make Clicking the "Start" Button calling the proper method.*/
+		this.button = new Button();
+		this.prog = new ProgressBar();
+		this.donetext = new Label();
 		
 		
 		/*========================================================*/

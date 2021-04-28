@@ -2,13 +2,17 @@ package application;
 
 import data.Task;
 import data.TaskTable;
+import data.TaskUtil;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -57,6 +61,9 @@ public class Main extends Application{
 		
 		/*====================FILL CODE============================
 		Make Clicking the "Load More Tasks" Button calling the proper method.*/
+		btnLoad.setOnMouseClicked((MouseEvent event) ->{
+			taskTable.addData(new Task());
+		});
 		
 		/*========================================================*/
 		
@@ -68,7 +75,14 @@ public class Main extends Application{
 		/*====================FILL CODE============================
 		Make Clicking the "Clear Finished Task(s)" Button calling the proper method.
 		Do note that if there is no Finished Task, then show the error.*/
-		
+		btnClear.setOnMouseClicked((MouseEvent event) ->{
+			if(taskTable.getFinishedTaskCount() > 0) {
+				taskTable.removeAllCompletedTask();				
+			}
+			else {
+				showWarning();
+			}
+		});
 		/*========================================================*/
 		
 		
@@ -93,7 +107,11 @@ public class Main extends Application{
 	public void showWarning() {
 		/*====================FILL CODE============================
 		Show the Warning Dialogue according to the document.*/
-		
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Error");
+		alert.setHeaderText(null);
+		alert.setContentText("There is no finished task.");
+		alert.showAndWait();
 		/*========================================================*/
 	}
 	
